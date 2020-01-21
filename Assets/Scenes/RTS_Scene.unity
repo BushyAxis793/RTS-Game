@@ -180,6 +180,48 @@ Transform:
   m_Father: {fileID: 1797519488}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 43.321003, y: -127.711006, z: -55.284004}
+--- !u!1001 &240851372
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4340956674897174, guid: 4dcd33c20bff5424a8a114ad977dfe9f, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 360.77188
+      objectReference: {fileID: 0}
+    - target: {fileID: 4340956674897174, guid: 4dcd33c20bff5424a8a114ad977dfe9f, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 50.009155
+      objectReference: {fileID: 0}
+    - target: {fileID: 4340956674897174, guid: 4dcd33c20bff5424a8a114ad977dfe9f, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 100.859985
+      objectReference: {fileID: 0}
+    - target: {fileID: 4340956674897174, guid: 4dcd33c20bff5424a8a114ad977dfe9f, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4340956674897174, guid: 4dcd33c20bff5424a8a114ad977dfe9f, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4340956674897174, guid: 4dcd33c20bff5424a8a114ad977dfe9f, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4340956674897174, guid: 4dcd33c20bff5424a8a114ad977dfe9f, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4340956674897174, guid: 4dcd33c20bff5424a8a114ad977dfe9f, type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 4dcd33c20bff5424a8a114ad977dfe9f, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &500986022
 GameObject:
   m_ObjectHideFlags: 0
@@ -222,6 +264,48 @@ WindZone:
   m_WindTurbulence: 4
   m_WindPulseMagnitude: 0.5
   m_WindPulseFrequency: 0.01
+--- !u!1001 &1434428314
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4073956081109076, guid: 74f2f64a05a4db94d98208ee1d5707f5, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 365.80643
+      objectReference: {fileID: 0}
+    - target: {fileID: 4073956081109076, guid: 74f2f64a05a4db94d98208ee1d5707f5, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 50.009155
+      objectReference: {fileID: 0}
+    - target: {fileID: 4073956081109076, guid: 74f2f64a05a4db94d98208ee1d5707f5, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 101.09111
+      objectReference: {fileID: 0}
+    - target: {fileID: 4073956081109076, guid: 74f2f64a05a4db94d98208ee1d5707f5, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4073956081109076, guid: 74f2f64a05a4db94d98208ee1d5707f5, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4073956081109076, guid: 74f2f64a05a4db94d98208ee1d5707f5, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4073956081109076, guid: 74f2f64a05a4db94d98208ee1d5707f5, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4073956081109076, guid: 74f2f64a05a4db94d98208ee1d5707f5, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 74f2f64a05a4db94d98208ee1d5707f5, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1456221898
 GameObject:
   m_ObjectHideFlags: 0
@@ -431,5 +515,5 @@ Transform:
   - {fileID: 142550300}
   - {fileID: 500986023}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
