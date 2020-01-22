@@ -5,9 +5,14 @@ using UnityEngine.AI;
 
 public class Unit : MonoBehaviour {
 
+
+
 	const string ANIMATOR_SPEED = "Speed",
 		ANIMATOR_ALIVE = "Alive",
 		ANIMATOR_ATTACK = "Attack";
+
+	public static List<ISelectable> SelectableUnits { get { return selectableUnits; } }
+	static List<ISelectable> selectableUnits = new List<ISelectable>();
 
 	public float HealthPercent { get { return hp / hpMax; } }
 
@@ -20,6 +25,8 @@ public class Unit : MonoBehaviour {
 	[SerializeField]
 	GameObject hpBarPrefab;
 
+	protected Healthbar healthBar;
+
 	NavMeshAgent nav;
 
 	Animator animator;
@@ -30,9 +37,24 @@ public class Unit : MonoBehaviour {
 		animator = GetComponent<Animator>();
 		hp = hpMax;
 		Instantiate(hpBarPrefab, transform);
+		healthBar = Instantiate(hpBarPrefab, transform).GetComponent<Healthbar>();
 	}
 	
+	private void Start()
+	{
+		if (this is ISelectable) 
+		{
+			selectableUnits.Add(this as ISelectable);
+			(this as ISelectable).SetSelected(false);
+		}
+	}
 	
+	private void OnDestroy()
+	{
+		if (this is ISelectable) selectableUnits.Remove(this as ISelectable);
+	}
+
+
 	void Update () {
 
 		if (target)

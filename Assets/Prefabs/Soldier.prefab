@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 4340956674897174}
   - component: {fileID: 95492309396608968}
   - component: {fileID: 195403357649625766}
-  - component: {fileID: 114482628729999088}
+  - component: {fileID: 114838994001104200}
   m_Layer: 0
   m_Name: Soldier
   m_TagString: Untagged
@@ -543,7 +543,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1243004037113256}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 360.77188, y: 50.118, z: 79.6}
+  m_LocalPosition: {x: 360.77188, y: 50.118, z: 83.96}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4128708718796364}
@@ -844,7 +844,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114482628729999088
+--- !u!114 &114838994001104200
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -852,9 +852,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1243004037113256}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e22955bc1bc89dd438b850efee23c27e, type: 3}
+  m_Script: {fileID: 11500000, guid: 06b20f9b18de3ee41b84570052afeaa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  hp: 0
+  hpMax: 100
+  hpBarPrefab: {fileID: 1631318753193026, guid: fc454a2285497a04091a00488a1a10a4,
+    type: 2}
 --- !u!137 &137768434475860550
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
