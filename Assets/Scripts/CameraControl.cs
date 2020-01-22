@@ -18,11 +18,13 @@ public class CameraControl : MonoBehaviour {
 	new Camera camera;
 	Vector2 mousePos, mousePosScreen, keyboardInput;
 	bool isCursorInGameScreen;
+	Rect selectionRect, boxRect;
 
 	private void Awake()
 	{
 		selectionBox = GetComponentInChildren<Image>(true).transform as RectTransform;
 		camera = GetComponent<Camera>();
+		selectionBox.gameObject.SetActive(false);
 	}
 
 	private void Update()
@@ -76,8 +78,39 @@ public class CameraControl : MonoBehaviour {
 
 	void UpdateClicks()
 	{
-			//selectionBox.anchoredPosition = mousePos;
+		if (Input.GetMouseButtonDown(0))
+		{
+			selectionBox.gameObject.SetActive(true);
+			selectionRect.position = mousePos;
+		}
+		else if (Input.GetMouseButtonUp(0))
+		{
+			selectionBox.gameObject.SetActive(false);
+		}
+		if (Input.GetMouseButton(0))
+		{
+			selectionRect.size = mousePos - selectionRect.position;
+			boxRect = AbsRect(selectionRect);
+			selectionBox.anchoredPosition = boxRect.position;
+			selectionBox.sizeDelta = boxRect.size;
+		}
+		
 
+	}
+
+	Rect AbsRect(Rect rect)
+	{
+		if (rect.width <0)
+		{
+			rect.x += rect.width;
+			rect.width *= -1;
+		}
+		if (rect.height < 0)
+		{
+			rect.y += rect.height;
+			rect.height *= -1;
+		}
+		return rect;
 	}
 
 }
