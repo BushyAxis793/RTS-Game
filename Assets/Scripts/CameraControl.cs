@@ -97,7 +97,10 @@ public class CameraControl : MonoBehaviour {
 			selectionBox.sizeDelta = boxRect.size;
 			UpdateSelecting();
 		}
-		
+		if (Input.GetMouseButtonDown(1))
+		{
+			
+		}
 
 	}
 
@@ -141,5 +144,37 @@ public class CameraControl : MonoBehaviour {
 		return rect;
 	}
 
+	Ray ray;
+	RaycastHit rayhit;
+	[SerializeField]
+	LayerMask commandLayerMask = -1;
+
+	void GiveCommands()
+	{
+		ray = camera.ViewportPointToRay(mousePosScreen);
+		if (Physics.Raycast(ray,out rayhit,1000,commandLayerMask))
+		{
+			object commandData = null;
+			if (rayhit.collider is TerrainCollider)
+			{
+				//Debug.Log("Terrain"+ rayhit.point.ToString());
+				commandData = rayhit.point;
+
+			}else
+			{
+				//Debug.Log(rayhit.collider);
+				commandData = rayhit.collider.gameObject.GetComponent<Unit>();
+			}
+			GiveCommands(commandData);
+		}
+	}
+
+	void GiveCommands(object dataCommand)
+	{
+		foreach (Unit unit in selectedUnits)
+		{
+			unit.SendMessage("Command", dataCommand, SendMessageOptions.DontRequireReceiver);
+		}
+	}
 
 }

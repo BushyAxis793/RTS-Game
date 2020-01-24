@@ -3,75 +3,122 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Unit : MonoBehaviour {
+public class Unit : MonoBehaviour
+{
+
+    public enum Task
+    {
+        idle, move, follow, chase, attack
+    }
+
+    const string ANIMATOR_SPEED = "Speed",
+        ANIMATOR_ALIVE = "Alive",
+        ANIMATOR_ATTACK = "Attack";
+
+    public static List<ISelectable> SelectableUnits { get { return selectableUnits; } }
+    static List<ISelectable> selectableUnits = new List<ISelectable>();
+
+    public bool IsAlive { get { return hp > 0; } }
+    public float HealthPercent { get { return hp / hpMax; } }
+
+    public Transform target;
 
 
+    [SerializeField]
+    float hp, hpMax = 100;
 
-	const string ANIMATOR_SPEED = "Speed",
-		ANIMATOR_ALIVE = "Alive",
-		ANIMATOR_ATTACK = "Attack";
+    [SerializeField]
+    GameObject hpBarPrefab;
+    [SerializeField]
+    float stoppingDistance = 1;
 
-	public static List<ISelectable> SelectableUnits { get { return selectableUnits; } }
-	static List<ISelectable> selectableUnits = new List<ISelectable>();
+    protected Healthbar healthBar;
 
-	public float HealthPercent { get { return hp / hpMax; } }
+    protected NavMeshAgent nav;
 
-	public Transform target;
+    Animator animator;
 
+    protected Task task = Task.idle;
+    private void Awake()
+    {
+        nav = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
+        hp = hpMax;
+        Instantiate(hpBarPrefab, transform);
+        healthBar = Instantiate(hpBarPrefab, transform).GetComponent<Healthbar>();
+    }
 
-	[SerializeField]
-	float hp, hpMax = 100;
+    private void Start()
+    {
+        if (this is ISelectable)
+        {
+            selectableUnits.Add(this as ISelectable);
+            (this as ISelectable).SetSelected(false);
+        }
+    }
 
-	[SerializeField]
-	GameObject hpBarPrefab;
-
-	protected Healthbar healthBar;
-
-	NavMeshAgent nav;
-
-	Animator animator;
-
-	private void Awake() 
-	{
-		nav = GetComponent<NavMeshAgent>();
-		animator = GetComponent<Animator>();
-		hp = hpMax;
-		Instantiate(hpBarPrefab, transform);
-		healthBar = Instantiate(hpBarPrefab, transform).GetComponent<Healthbar>();
-	}
-	
-	private void Start()
-	{
-		if (this is ISelectable) 
-		{
-			selectableUnits.Add(this as ISelectable);
-			(this as ISelectable).SetSelected(false);
-		}
-	}
-	
-	private void OnDestroy()
-	{
-		if (this is ISelectable) selectableUnits.Remove(this as ISelectable);
-	}
+    private void OnDestroy()
+    {
+        if (this is ISelectable) selectableUnits.Remove(this as ISelectable);
+    }
 
 
-	void Update () {
+    void Update()
+    {
 
-		if (target)
-		{
-			nav.SetDestination(target.position);
-		}
+        
+        if (IsAlive)
+            switch (task)
+            {
+                case Task.idle: Idling(); break;
+                case Task.move: Moving(); break;
+                case Task.follow: Following(); break;
+                case Task.chase: Chasing(); break;
+                case Task.attack: Attacking(); break;
 
-		Animate();
-	}
+            }
+        Animate();
+    }
 
-	protected virtual void Animate()
-	{
-		var speedVector = nav.velocity;
-		speedVector.y = 0;
-		float speed = speedVector.magnitude;
-		animator.SetFloat(ANIMATOR_SPEED, speed);
-		animator.SetBool(ANIMATOR_ALIVE, hp > 0);
-	}
-	
+    protected virtual void Attacking()
+    {
+        nav.velocity = Vector3.zero;
+    }
+    protected virtual void Idling() 
+    {
+        nav.velocity = Vector3.zero;
+    }
+    protected virtual void Moving() 
+    {
+        float distance = Vector3.Magnitude(nav.destination - transform.position);
+        if (distance <= stoppingDistance)
+        {
+            task = Task.idle;
+        }
+    }
+    protected virtual void Following()
+    {
+        if (target)
+        {
+            nav.SetDestination(target.position);
+        }
+        else
+        {
+            task = Task.idle;
+        }
+    }
+    protected virtual void Chasing()
+    { 
+
+    }
+
+    protected virtual void Animate()
+    {
+        var speedVector = nav.velocity;
+        speedVector.y = 0;
+        float speed = speedVector.magnitude;
+        animator.SetFloat(ANIMATOR_SPEED, speed);
+        animator.SetBool(ANIMATOR_ALIVE, IsAlive);
+    }
+
 }
