@@ -111,10 +111,10 @@ public class CameraControl : MonoBehaviour {
 		foreach(Unit unit in Unit.SelectableUnits)
 		{
 			Debug.Log(unit.ToString());
-			if (!unit) continue;
+			if (!unit || !unit.IsAlive) continue;
 			var pos = unit.transform.position;
 			var posScreen = camera.WorldToScreenPoint(pos);
-			bool inRect = IsPointInrect(boxRect, posScreen);
+			bool inRect = IsPointInRect(boxRect, posScreen);
 			(unit as ISelectable).SetSelected(inRect);
 			if (inRect)
 			{
@@ -123,7 +123,7 @@ public class CameraControl : MonoBehaviour {
 		}
 	}
 
-	bool IsPointInrect(Rect rect, Vector2 point)
+	bool IsPointInRect(Rect rect, Vector2 point)
 	{
 		return point.x >= rect.position.x && point.x <= (rect.position.x + rect.size.x) &&
 			point.y >= rect.position.y && point.y <= (rect.position.y + rect.size.y);

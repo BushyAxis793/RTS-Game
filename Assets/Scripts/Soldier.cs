@@ -87,8 +87,8 @@ public class Soldier : Unit, ISelectable
 
 	void EndShootEffect()
 	{
-		lightEffect.enabled = false;
-		lineEffect.enabled = false;
+		//lightEffect.enabled = false;
+		//lineEffect.enabled = false;
 	}
 
 }
