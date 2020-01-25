@@ -130,7 +130,7 @@ public class Dragon : Unit {
 	protected override void OnDrawGizmosSelected()
 	{
 		base.OnDrawGizmosSelected();
-		startPoint = transform.position;
+		if (Application.isPlaying) startPoint = transform.position;
 		Gizmos.color = Color.blue;
 		Gizmos.DrawWireSphere(startPoint, patrolRadius);
 	}

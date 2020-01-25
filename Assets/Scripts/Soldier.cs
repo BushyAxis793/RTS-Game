@@ -91,4 +91,9 @@ public class Soldier : Unit, ISelectable
 		//lineEffect.enabled = false;
 	}
 
+	public override void ReceiveDamage(float damage, Vector3 damageDealerPosition)
+	{
+		base.ReceiveDamage(damage, damageDealerPosition);
+		animator.SetTrigger("Get Hit");
+	}
 }
