@@ -27,7 +27,7 @@ public class Healthbar : MonoBehaviour {
     {
         if (!unit)
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
             return;
         }
 
@@ -38,4 +38,6 @@ public class Healthbar : MonoBehaviour {
         rotation.y = 180;
         transform.localEulerAngles = rotation;
     }
+
+    
 }

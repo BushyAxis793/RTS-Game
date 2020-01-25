@@ -26,8 +26,10 @@ public class Unit : MonoBehaviour
 
     [SerializeField]
     GameObject hpBarPrefab;
+
     [SerializeField]
     float hp, hpMax = 100;
+
     [SerializeField]
     protected float stoppingDistance = 1,
      attackDistance = 1,

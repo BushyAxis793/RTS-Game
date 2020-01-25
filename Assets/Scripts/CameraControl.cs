@@ -99,7 +99,7 @@ public class CameraControl : MonoBehaviour {
 		}
 		if (Input.GetMouseButtonDown(1))
 		{
-			
+			///
 		}
 
 	}
