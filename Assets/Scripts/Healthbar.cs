@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Healthbar : MonoBehaviour {
 
-    const string HP_CANVAS = "HP Canvas";
+    const string WORLD_CANVAS = "HP Canvas";
 
     [SerializeField]
     Vector3 offset;
@@ -20,7 +20,7 @@ public class Healthbar : MonoBehaviour {
         slider = GetComponent<Slider>();
         parent = transform.parent;
         unit = GetComponentInParent<Unit>();
-        var canvas = GameObject.FindGameObjectWithTag(HP_CANVAS);
+        var canvas = GameObject.FindGameObjectWithTag(WORLD_CANVAS);
         if (canvas) transform.SetParent(canvas.transform);
         cameraTransform = Camera.main.transform;
     }
@@ -40,7 +40,7 @@ public class Healthbar : MonoBehaviour {
         transform.position = parent.transform.position + offset;
         transform.LookAt(cameraTransform);
         var rotation = transform.localEulerAngles;
-        rotation.y = 180;
+        rotation.y = -180;
         transform.localEulerAngles = rotation;
     }
 
